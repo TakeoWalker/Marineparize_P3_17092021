@@ -67,6 +67,44 @@ header {
   text-decoration: none;
 }
 
+.operation-title {
+  margin-left: 5%;
+}
+
+.operation-list div {
+  display: flex;
+  align-items: center;
+  margin: 25px 8%;
+  border-radius: 25px;
+  box-shadow: 0 2px 10px #CFCFCF;
+  background-color: #F6F6F6;
+}
+
+.operation-list div:hover,
+.operation-list i:hover {
+  color: #9356DC;
+  background-color: #F5EDFF;
+}
+
+.operation-list-number {
+  position: relative;
+  right: 15px;
+  width: 10px;
+  height: 10px;
+  padding: 5px 10px 15px 10px;
+  color: white;
+  background-color: #9356DC;
+  border-radius: 50%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.operation-list i {
+  color: #7E7E7E;
+  width: 10px;
+  margin-right: 25px;
+}
+
 /** Restaurant **/
 .restaurant {
   display: flex;

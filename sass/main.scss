@@ -4,6 +4,16 @@
 }
 
 @font-face {
+    font-family: 'roboto-thin';
+    src: url('../font/Roboto/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'roboto-bold';
+    src: url('../font/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'shrikhand';
     src: url('../font/Shrikhand/Shrikhand-Regular.ttf') format('truetype');
 }
@@ -15,7 +25,35 @@ $color-primary: #9356DC;
 $color-secondary: #FF79DA;
 $color-tertiary: #99E2D0;
 $font-primary: 'roboto';
-$font-title: 'shrikhand';
+$font-logo: 'shrikhand';
+$font-title: 'roboto-bold';
+$font-subtitle: 'roboto-thin';
+
+/** Mixin **/
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin title {
+    font-family: $font-title;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+@mixin background-img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-size: 120% auto;
+    background-position: center;
+    min-width: 135px;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+}
+
 
 /** Site **/
 
@@ -28,11 +66,6 @@ body {
 
 
 /** Main Page **/
-
-@mixin flex {
-    display: flex;
-    justify-content: center;
-}
 
 header {
     @include flex;
@@ -61,12 +94,13 @@ header {
 
 .exploration-title {
     margin: 20px 0;
-    font-weight: 900;
+    @include title();
 }
 
-.exploration-text {
+.exploration-subtitle {
     margin: 20px 0;
     font-weight: 100;
+    font-family: $font-subtitle;
 }
 
 .exploration-btn {
@@ -83,8 +117,13 @@ header {
     text-decoration: none;
 }
 
+.operation {
+    margin: 50px 0 60px 0;
+}
+
 .operation-title {
     margin-left: 5%;
+    @include title();
 }
 
 .operation-list div {
@@ -121,21 +160,30 @@ header {
     margin-right: 25px;
 }
 
+.operation-list-text {
+    font-weight: 600;
+}
+
 
 /** Restaurant **/
 
 .restaurant {
     display: flex;
     flex-direction: column;
-    padding: 20px 5% 50px 5%;
+    padding: 20px 5% 120px 5%;
     background-color: #F6F6F6;
+}
+
+.restaurant-title {
+    @include title();
 }
 
 .restaurant-list {
     display: grid;
-    grid-template-columns: 335px;
+    grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
     row-gap: 2%;
+    justify-content: center;
 }
 
 .restaurant-list a {
@@ -148,14 +196,6 @@ header {
 
 /** Card **/
 
-@mixin background-img {
-    background-size: auto 225px;
-    background-position: bottom;
-    min-width: 135px;
-    height: 200px;
-    border-radius: 15px 15px 0 0;
-}
-
 .card-img-menilmontant {
     @include background-img();
     background-image: url("..//img/restaurants/jay-wennington-N_Y88TWmGwA-unsplash.jpg")
@@ -163,8 +203,7 @@ header {
 
 .card-img-charonne {
     @include background-img();
-    background-position: 50% 60%;
-    background-size: 350px;
+    background-position: 50% 57%;
     background-image: url("../img/restaurants/stil-u2Lp8tXIcjw-unsplash.jpg");
 }
 
@@ -181,23 +220,40 @@ header {
 .card {
     border-radius: 15px;
     background-color: white;
+    padding-bottom: 10px;
 }
 
 .new {
-    align-self: flex-end;
     width: 75px;
+    margin-right: 10px;
     padding: 5px 0 5px 10px;
     background-color: $color-tertiary;
 }
 
 .card-text {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 25px 25px;
     margin-top: 10px;
 }
 
 .card-text p {
-    margin: 5px 0 5px 10px;
+    margin: 5px 0 0 10px;
+}
+
+.card-subtitle {
+    grid-column: 1;
+    grid-row: 2;
+    font-weight: 100;
+    font-family: $font-subtitle;
+}
+
+.card-like {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    justify-self: flex-end;
+    margin-right: 30px;
 }
 
 
@@ -216,7 +272,7 @@ footer a {
 .footer-title {
     font-size: 20px;
     margin-bottom: 20px;
-    font-family: $font-title;
+    font-family: $font-logo;
 }
 
 footer div {
@@ -226,8 +282,20 @@ footer div {
 
 /** Page Menu**/
 
-header a {
-    justify-self: flex-start;
+.menu-page-header {
+    display: grid;
+    justify-content: unset;
+    grid-template-columns: 50px auto;
+    grid-template-rows: auto;
+}
+
+.back {
+    padding-left: 20px;
+    color: black;
+}
+
+.logo {
+    justify-self: center;
 }
 
 .menu-page-img {
@@ -242,8 +310,52 @@ header a {
     object-fit: cover;
 }
 
+.menu-page {
+    position: relative;
+    bottom: 50px;
+    border-radius: 25px 25px 0 0;
+    background-color: #F6F6F6;
+    padding: 0 5% 30px 5%;
+    margin-bottom: -50px;
+}
+
 .menu-page-title {
+    font-family: $font-logo;
+    font-size: 18px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.menu {
+    margin-bottom: 50px;
+}
+
+h3 {
+    font-family: $font-subtitle;
+    border-bottom: 3px solid $color-tertiary;
+    width: 50px;
+    text-transform: uppercase;
+}
+
+.menu-card {
+    background-color: white;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 1px 10px #CFCFCF;
+}
+
+.menu-card-subtitle {
+    font-family: $font-subtitle;
+}
+
+.order-btn {
+    text-align: center;
+    color: white;
+    width: 100px;
+    padding: 20px;
+    font-weight: 900;
+    border-radius: 25px;
+    background: linear-gradient(170deg, rgba(255, 121, 218, 1) 20%, rgba(147, 86, 220, 1) 100%);
 }

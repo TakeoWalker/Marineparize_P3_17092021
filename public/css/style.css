@@ -321,7 +321,7 @@ footer div {
   margin-bottom: 50px;
 }
 
-h3 {
+.menu h3 {
   font-family: "roboto-thin";
   border-bottom: 3px solid #99E2D0;
   width: 50px;
@@ -329,6 +329,9 @@ h3 {
 }
 
 .menu-card {
+  display: grid;
+  grid-template-columns: auto 10%;
+  grid-template-rows: auto auto;
   background-color: white;
   margin: 20px 0;
   padding: 20px;
@@ -337,7 +340,12 @@ h3 {
 }
 
 .menu-card-subtitle {
+  grid-column: 1;
   font-family: "roboto-thin";
+}
+
+.price {
+  grid-column: 2;
 }
 
 .order-btn {

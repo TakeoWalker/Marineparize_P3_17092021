@@ -311,6 +311,9 @@ footer div {
 }
 
 .menu-page {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto auto;
     position: relative;
     bottom: 50px;
     border-radius: 25px 25px 0 0;
@@ -328,7 +331,7 @@ footer div {
 }
 
 .menu {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .menu h3 {
@@ -340,7 +343,7 @@ footer div {
 
 .menu-card {
     display: grid;
-    grid-template-columns: auto 10%;
+    grid-template-columns: auto 5%;
     grid-template-rows: auto auto;
     background-color: white;
     margin: 20px 0;
@@ -360,10 +363,77 @@ footer div {
 
 .order-btn {
     text-align: center;
+    justify-self: center;
     color: white;
     width: 100px;
     padding: 20px;
     font-weight: 900;
     border-radius: 25px;
     background: linear-gradient(170deg, rgba(255, 121, 218, 1) 20%, rgba(147, 86, 220, 1) 100%);
+}
+
+
+/** Media Queries **/
+
+@media screen and (min-width: 800px) {
+    .exploration {
+        height: 200px;
+    }
+    .operation {
+        display: flex;
+        flex-direction: column;
+    }
+    .operation-list {
+        display: flex;
+    }
+    .operation-list div {
+        margin: auto 20px;
+        padding-right: 16px;
+        width: 100%;
+    }
+    .operation-list-number {
+        bottom: 35px;
+        right: unset;
+        left: 50%;
+    }
+    .restaurant-title,
+    .operation-title {
+        align-self: center;
+    }
+    .restaurant-list {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 2%;
+    }
+}
+
+@media screen and (min-width: 1130px) and (max-width:2000px) {
+    .operation-list div {
+        justify-content: center;
+    }
+    .restaurant-list {
+        display: flex;
+    }
+    .operation-list-number {
+        left: unset;
+        bottom: unset;
+        right: 15px;
+    }
+    /** Menu Page **/
+    .menu-page {
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+        gap: 2%;
+        padding: 0 3% 30px 3%;
+    }
+    .menu-page-title {
+        grid-column: 1/4;
+        justify-content: center;
+    }
+    .like {
+        margin-left: 20px;
+    }
+    .order-btn {
+        grid-column: 1/4;
+    }
 }

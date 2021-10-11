@@ -39,6 +39,62 @@
     opacity: 0;
   }
 }
+@keyframes principal-menu {
+  0%, 20% {
+    visibility: hidden;
+    margin-top: 30px;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+@keyframes card-menu {
+  0%, 50% {
+    visibility: hidden;
+    margin-top: 30px;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+@keyframes heart {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes check {
+  0% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes go-left {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 85%;
+  }
+}
 /** Site **/
 html,
 body {
@@ -210,8 +266,8 @@ header {
   background: linear-gradient(170deg, #ff79da 20%, #9356dc 100%);
 }
 .exploration-btn:hover {
-  filter: brightness(1.25);
-  box-shadow: 0 2px 10px black;
+  filter: brightness(1.1);
+  box-shadow: 0 2px 10px #595959;
 }
 
 .exploration a {
@@ -238,10 +294,10 @@ header {
   background-color: #F6F6F6;
 }
 
-.operation-list div:hover,
-.operation-list i:hover {
+.operation-list div:hover {
   color: #9356DC;
   background-color: #F5EDFF;
+  box-shadow: 0 2px 10px #A3A3A3;
 }
 
 .operation-list-number {
@@ -355,6 +411,10 @@ header {
   background-color: white;
   padding-bottom: 10px;
 }
+.card:hover {
+  box-shadow: 0 2px 10px #CFCFCF;
+  transform: scale(1.01);
+}
 
 .new {
   width: 75px;
@@ -387,6 +447,7 @@ header {
   align-self: center;
   justify-self: flex-end;
   margin-right: 30px;
+  animation: heart 1s ease forwards;
 }
 
 /** Footer **/
@@ -459,8 +520,23 @@ footer div {
   align-items: center;
 }
 
+.like i:hover,
+.card-like i:hover {
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(170deg, #ff79da 20%, #9356dc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: heart 1s ease forwards;
+  -webkit-animation: heart 1s;
+  line-height: unset;
+}
+
 .menu {
   margin-bottom: 20px;
+  visibility: visible;
+  animation: principal-menu 1s ease-in forwards;
 }
 
 .menu h3 {
@@ -471,23 +547,85 @@ footer div {
 }
 
 .menu-card {
-  display: grid;
-  grid-template-columns: auto 5%;
-  grid-template-rows: auto auto;
+  visibility: visible;
   background-color: white;
   margin: 20px 0;
-  padding: 20px;
+  padding: 0;
   border-radius: 25px;
   box-shadow: 0 1px 10px #CFCFCF;
+  animation: card-menu 4s ease backwards;
+  display: flex;
+  width: 330px;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.menu-card:hover .price {
+  display: flex;
+  animation: check 0.4s linear both;
+}
+.menu-card:hover .check {
+  display: flex;
+  animation: check 0.4s linear both;
+}
+.menu-card:hover .menu-card-text {
+  animation: go-left 0.5s linear forwards;
+}
+
+.menu-card-text {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-card-no-check {
+  margin: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 360px;
+  min-width: 200px;
 }
 
 .menu-card-subtitle {
-  grid-column: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-card:nth-child(5) {
+  animation-delay: 0s;
+}
+
+.menu-card:nth-child(4) {
+  animation-delay: -0.3s;
+}
+
+.menu-card:nth-child(3) {
+  animation-delay: -0.6s;
+}
+
+.menu-card:nth-child(2) {
+  animation-delay: -0.9s;
+}
+
+.menu-card-subtitle {
   font-family: "roboto-thin";
 }
 
-.price {
-  grid-column: 2;
+.check {
+  display: none;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  background-color: #99E2D0;
+  width: 5em;
+  height: auto;
+  border-radius: 0 25px 25px 0;
+}
+
+.check i {
+  animation: spin 0.5s linear both;
 }
 
 .order-btn {
@@ -498,7 +636,12 @@ footer div {
   padding: 20px;
   font-weight: 900;
   border-radius: 25px;
+  box-shadow: 0 2px 10px grey;
   background: linear-gradient(170deg, #ff79da 20%, #9356dc 100%);
+}
+.order-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 2px 10px #595959;
 }
 
 /** Media Queries **/

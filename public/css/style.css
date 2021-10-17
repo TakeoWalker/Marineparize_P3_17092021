@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "roboto";
   src: url("../font/Roboto/Roboto-Regular.ttf") format("truetype");
@@ -79,6 +80,14 @@
     transform: translateX(0);
   }
 }
+@keyframes check-price {
+  0% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -87,12 +96,12 @@
     transform: rotate(360deg);
   }
 }
-@keyframes go-left {
-  from {
-    width: 100%;
+@keyframes check-text {
+  0% {
+    width: 20em;
   }
-  to {
-    width: 85%;
+  100% {
+    width: 13em;
   }
 }
 /** Site **/
@@ -101,6 +110,14 @@ body {
   margin: 0 auto;
   padding: 0;
   font-family: "roboto";
+  -moz-user-select: none;
+  /* Firefox */
+  -webkit-user-select: none;
+  /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none;
+  /* Internet explorer depuis la version 10 et Edge */
+  user-select: none;
+  /* Propriété standard */
 }
 
 /** Loader **/
@@ -264,6 +281,14 @@ header {
   border-radius: 30px;
   box-shadow: 0 2px 10px grey;
   background: linear-gradient(170deg, #ff79da 20%, #9356dc 100%);
+  -moz-user-select: none;
+  /* Firefox */
+  -webkit-user-select: none;
+  /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none;
+  /* Internet explorer depuis la version 10 et Edge */
+  user-select: none;
+  /* Propriété standard */
 }
 .exploration-btn:hover {
   filter: brightness(1.1);
@@ -346,8 +371,6 @@ header {
 }
 
 .restaurant-list a {
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
   color: black;
 }
@@ -410,6 +433,9 @@ header {
   border-radius: 15px;
   background-color: white;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 265px;
 }
 .card:hover {
   box-shadow: 0 2px 10px #CFCFCF;
@@ -424,9 +450,8 @@ header {
 }
 
 .card-text {
-  display: grid;
-  grid-template-columns: 200px auto;
-  grid-template-rows: 25px 25px;
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
 }
 
@@ -435,17 +460,14 @@ header {
 }
 
 .card-subtitle {
-  grid-column: 1;
-  grid-row: 2;
   font-weight: 100;
   font-family: "roboto-thin";
 }
 
 .card-like {
-  grid-column: 2;
-  grid-row: 1/3;
-  align-self: center;
-  justify-self: flex-end;
+  position: relative;
+  bottom: 30px;
+  align-self: flex-end;
   margin-right: 30px;
   animation: heart 1s ease forwards;
 }
@@ -502,13 +524,13 @@ footer div {
 
 .menu-page {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   grid-template-rows: auto auto auto auto auto;
   position: relative;
   bottom: 50px;
   border-radius: 25px 25px 0 0;
   background-color: #F6F6F6;
-  padding: 0 5% 30px 5%;
+  padding: 0 5% 70px 5%;
   margin-bottom: -50px;
 }
 
@@ -516,8 +538,12 @@ footer div {
   font-family: "shrikhand";
   font-size: 18px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+}
+
+.menu-page-title h2 {
+  margin-right: 50px;
 }
 
 .like i:hover,
@@ -531,6 +557,7 @@ footer div {
   animation: heart 1s ease forwards;
   -webkit-animation: heart 1s;
   line-height: unset;
+  cursor: pointer;
 }
 
 .menu {
@@ -551,28 +578,29 @@ footer div {
   background-color: white;
   margin: 20px 0;
   padding: 0;
-  border-radius: 25px;
+  border-radius: 20px;
   box-shadow: 0 1px 10px #CFCFCF;
   animation: card-menu 4s ease backwards;
   display: flex;
-  width: 330px;
+  min-width: 350px;
   justify-content: space-between;
   overflow: hidden;
-}
-.menu-card:hover .price {
-  display: flex;
-  animation: check 0.4s linear both;
+  cursor: pointer;
+  /*     &:hover .price {
+         display: flex;
+         animation: check-price 0.4s linear both;
+     }
+  */
 }
 .menu-card:hover .check {
   display: flex;
-  animation: check 0.4s linear both;
+  animation: check 0.4s linear forwards;
 }
 .menu-card:hover .menu-card-text {
-  animation: go-left 0.5s linear forwards;
+  animation: check-text 0.4s linear both;
 }
 
 .menu-card-text {
-  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -583,11 +611,18 @@ footer div {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  width: 360px;
-  min-width: 200px;
+  width: 100%;
+  width: -moz-available;
+  /* For Mozzila */
+  width: -webkit-fill-available;
+  /* For Chrome */
+  width: stretch;
+  /* Unprefixed */
 }
 
 .menu-card-subtitle {
+  margin-top: 8px;
+  font-size: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -620,8 +655,6 @@ footer div {
   align-items: center;
   background-color: #99E2D0;
   width: 5em;
-  height: auto;
-  border-radius: 0 25px 25px 0;
 }
 
 .check i {
@@ -632,12 +665,20 @@ footer div {
   text-align: center;
   justify-self: center;
   color: white;
-  width: 100px;
+  width: 50%;
   padding: 20px;
   font-weight: 900;
   border-radius: 25px;
   box-shadow: 0 2px 10px grey;
   background: linear-gradient(170deg, #ff79da 20%, #9356dc 100%);
+  -moz-user-select: none;
+  /* Firefox */
+  -webkit-user-select: none;
+  /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none;
+  /* Internet explorer depuis la version 10 et Edge */
+  user-select: none;
+  /* Propriété standard */
 }
 .order-btn:hover {
   filter: brightness(1.1);
@@ -645,7 +686,7 @@ footer div {
 }
 
 /** Media Queries **/
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) and (max-width: 1130px) {
   .exploration {
     height: 200px;
   }
@@ -679,16 +720,17 @@ footer div {
   .restaurant-list {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 2%;
+    gap: 5%;
   }
 }
-@media screen and (min-width: 1130px) and (max-width: 2000px) {
+@media screen and (min-width: 1130px) {
   .operation-list div {
     justify-content: center;
   }
 
   .restaurant-list {
-    display: flex;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3%;
   }
 
   .operation-list-number {
@@ -699,15 +741,15 @@ footer div {
 
   /** Menu Page **/
   .menu-page {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 350px 350px 350px;
     grid-template-rows: auto auto auto;
     gap: 2%;
-    padding: 0 3% 30px 3%;
+    padding: 0 3% 70px 3%;
+    justify-content: center;
   }
 
   .menu-page-title {
     grid-column: 1/4;
-    justify-content: center;
   }
 
   .like {

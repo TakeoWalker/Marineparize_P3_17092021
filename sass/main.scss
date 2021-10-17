@@ -483,7 +483,8 @@ header {
     margin-top: 10px;
 }
 
-.card-text p {
+.card-text h3,
+p {
     margin: 5px 0 0 10px;
 }
 
@@ -506,12 +507,6 @@ header {
 footer {
     padding: 20px;
     background-color: #353535;
-}
-
-footer>header {
-    display: unset;
-    padding: unset;
-    height: 35px;
 }
 
 footer a {
